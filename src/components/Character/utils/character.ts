@@ -26,8 +26,16 @@ const setCharacter = (
         loader.load(
           blobUrl,
           async (gltf) => {
+            if (!renderer.domElement.isConnected) {
+              dracoLoader.dispose();
+              return;
+            }
             character = gltf.scene;
             await renderer.compileAsync(character, camera, scene);
+            if (!renderer.domElement.isConnected) {
+              dracoLoader.dispose();
+              return;
+            }
             character.traverse((child: any) => {
               if (child.isMesh) {
                 const mesh = child as THREE.Mesh;

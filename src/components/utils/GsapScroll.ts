@@ -5,6 +5,17 @@ export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
   camera: THREE.PerspectiveCamera
 ) {
+  if (!character) return;
+  const landingSection = document.querySelector(".landing-section");
+  const aboutSection = document.querySelector(".about-section");
+  const whatIdoSection = document.querySelector(".whatIDO");
+  const characterModel = document.querySelector(".character-model");
+  const characterRim = document.querySelector(".character-rim");
+
+  if (!landingSection || !aboutSection || !whatIdoSection || !characterModel || !characterRim) {
+    return;
+  }
+
   let intensity: number = 0;
   setInterval(() => {
     intensity = Math.random();
@@ -133,6 +144,15 @@ export function setCharTimeline(
 }
 
 export function setAllTimeline() {
+  const careerSection = document.querySelector(".career-section");
+  const careerTimelineEl = document.querySelector(".career-timeline");
+  const careerInfoBox = document.querySelector(".career-info-box");
+  const careerDot = document.querySelector(".career-dot");
+
+  if (!careerSection || !careerTimelineEl || !careerInfoBox || !careerDot) {
+    return;
+  }
+
   const careerTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: ".career-section",
